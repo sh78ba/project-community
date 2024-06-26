@@ -2,8 +2,8 @@ const express=require("express")
 const mongoose=require("mongoose")
 const app=express()
 const cors=require("cors")
-const db_config=require("./configs/db.config")
-const server_config=require("./configs/server.config")
+require('dotenv').config()
+
 
 
 //fors cors
@@ -13,7 +13,7 @@ app.use(express.json())
 
 
 //for database conection
-mongoose.connect(db_config.DB_URL)
+mongoose.connect(process.env.DB_URL)
 
 const db=mongoose.connection
 
@@ -26,9 +26,10 @@ db.once("open",()=>{
 })
 
 //stitch 
+require("./routes/auth.route")(app)
 
-app.listen(server_config.PORT,()=>{
-    console.log("Server started at port",server_config.PORT)
+app.listen(process.env.PORT,()=>{
+    console.log("Server started at port",process.env.PORT)
 })
 
 
