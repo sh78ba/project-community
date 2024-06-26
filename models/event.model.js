@@ -4,7 +4,8 @@ const eventSchema = new mongoose.Schema({
   description: { type: String, required: true },
   date: { type: Date, required: true },
   location: { type: String, required: true },
-  organizer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  organizer: { type: String, required: true },
+  creatoremail:{type:String,required:true}
  
 },{timestamps:true,versionKey:false});
 module.exports = mongoose.model('Event', eventSchema);

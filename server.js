@@ -27,6 +27,7 @@ db.once("open",()=>{
 
 //stitch 
 require("./routes/auth.route")(app)
+require("./routes/event.route")(app)
 
 app.listen(process.env.PORT,()=>{
     console.log("Server started at port",process.env.PORT)
