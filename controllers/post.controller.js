@@ -3,7 +3,7 @@ const post_model=require("../models/post.model")
 const cloudinary=require("../utils/cloudinary");
 
 
-exports.createNeighbourPost=async(req,res)=>{
+exports.createPost=async(req,res)=>{
     const req_body=req.body
 
     const file=req.files.image;
