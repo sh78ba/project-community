@@ -34,6 +34,7 @@ require("./routes/auth.route")(app)
 require("./routes/event.route")(app)
 require("./routes/neighbour.route")(app)
 require("./routes/commdir.route")(app)
+require("./routes/post.route")(app)
 
 app.listen(process.env.PORT,()=>{
     console.log("Server started at port",process.env.PORT)

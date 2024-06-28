@@ -7,4 +7,12 @@ module.exports=(app)=>{
 
     //signin
     app.post("/community/api/v1/signin",[authMw.verifySignInBody],authController.signin)
+
+    //updtae profile image
+    app.post("/community/api/v1/updatephoto",authController.editProfileImage)
+
+    //update interest 
+    app.post("/community/api/v1/updateinterest",authController.editProfileInterests)
+
 }
+
