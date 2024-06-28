@@ -36,3 +36,16 @@ exports.createNeighbourPost=async(req,res)=>{
     }
 
 }
+
+
+exports.getAllNeighbour=async(req,res)=>{
+    try{
+        const response=await neighbour_model.find();
+        res.status(201).send(response)
+    }catch(err){
+        console.log("Error while fetching the events",err)
+        res.status(500).send({
+            message:"Error while fetching the events"
+        })
+    }
+}
