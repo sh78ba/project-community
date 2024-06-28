@@ -3,6 +3,7 @@ const mongoose=require("mongoose")
 const app=express()
 const cors=require("cors")
 require('dotenv').config()
+const fileUpload=require("express-fileupload")
 
 
 
@@ -11,6 +12,9 @@ app.use(cors());
 //for getting object in JSON format
 app.use(express.json())
 
+app.use(fileUpload({
+    useTempFiles:true
+}))
 
 //for database conection
 mongoose.connect(process.env.DB_URL)
@@ -28,6 +32,8 @@ db.once("open",()=>{
 //stitch 
 require("./routes/auth.route")(app)
 require("./routes/event.route")(app)
+require("./routes/neighbour.route")(app)
+require("./routes/commdir.route")(app)
 
 app.listen(process.env.PORT,()=>{
     console.log("Server started at port",process.env.PORT)

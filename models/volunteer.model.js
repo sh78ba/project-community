@@ -1,10 +1,12 @@
+//get event id 
+
+//get user mail
+
+
 const mongoose = require('mongoose');
 const volunteerOpportunitySchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  date: { type: Date, required: true },
-  location: { type: String, required: true },
-  organizer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  eventid:{type:String,required:true},
+  usermail:{type:String,required:true}
 
 },{timestamps:true,versionKey:false});
 
