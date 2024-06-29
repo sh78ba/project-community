@@ -13,7 +13,9 @@ app.use(cors());
 app.use(express.json())
 
 app.use(fileUpload({
-    useTempFiles:true
+    useTempFiles:true,
+    tempFileDir : '/tmp/',
+
 }))
 
 //for database conection
