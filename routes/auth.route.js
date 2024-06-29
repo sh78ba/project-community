@@ -14,5 +14,10 @@ module.exports=(app)=>{
     //update interest 
     app.post("/community/api/v1/updateinterest",authController.editProfileInterests)
 
+    //update profile
+    app.post("/community/api/v1/updateprofile",authController.updateProfile)
+
+
+
 }
 

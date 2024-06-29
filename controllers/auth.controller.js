@@ -123,6 +123,32 @@ exports.editProfileInterests = async (req, res) => {
     }
 };
 
-exports.editProfile=async(req,res)=>{
 
-}
+exports.updateProfile = async (req, res) => {
+    const { name, email, phone, password } = req.body;
+
+    // Build the update object
+    const updateFields = {};
+    if (name) updateFields.name = name;
+    if (email) updateFields.email = email;
+    if (phone) updateFields.phone = phone;
+    if (password) updateFields.password = bcrypt.hashSync(password, 8);
+
+    try {
+        // Find the user and update their profile
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.id, // Assuming user ID is available in req.user
+            { $set: updateFields },
+            { new: true } // Return the updated user document
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'Profile updated successfully', user: updatedUser });
+    } catch (error) {
+        console.error('Error updating profile:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
