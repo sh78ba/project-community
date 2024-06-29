@@ -10,6 +10,7 @@ exports.signup=async(req,res)=>{
         name:request_body.name,
         email:request_body.email,
         password:bcrypt.hashSync(request_body.password,8),
+        phone:"",
         photourl:"",
         interest:[]
     }
@@ -121,3 +122,7 @@ exports.editProfileInterests = async (req, res) => {
         res.status(500).send({ message: "Error while updating" });
     }
 };
+
+exports.editProfile=async(req,res)=>{
+
+}
