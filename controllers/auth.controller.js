@@ -86,7 +86,7 @@ exports.editProfileImage = async (req, res) => {
                    
                 );
              
-                res.status(200).send({message:"Photo updated sucessfully"},updatedUser);
+                res.status(200).send({message:"Photo updated sucessfully",updatedUser});
             });
     
 
