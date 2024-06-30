@@ -62,6 +62,7 @@ exports.signin=async(req,res)=>{
     res.status(200).send({
         name:getUser.name,
         email:getUser.email,
+        id:getUser._id
     })
 
 }
@@ -125,7 +126,7 @@ exports.editProfileInterests = async (req, res) => {
 
 
 exports.updateProfile = async (req, res) => {
-    const { name, email, phone, password } = req.body;
+    const { name, email, phone, password,id } = req.body;
 
     // Build the update object
     const updateFields = {};
@@ -137,7 +138,7 @@ exports.updateProfile = async (req, res) => {
     try {
         // Find the user and update their profile
         const updatedUser = await User.findByIdAndUpdate(
-            req.user.id, // Assuming user ID is available in req.user
+            id, 
             { $set: updateFields },
             { new: true } // Return the updated user document
         );
