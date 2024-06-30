@@ -137,7 +137,7 @@ exports.updateProfile = async (req, res) => {
 
     try {
         // Find the user and update their profile
-        const updatedUser = await User.findByIdAndUpdate(
+        const updatedUser = await user_model.findByIdAndUpdate(
             id, 
             { $set: updateFields },
             { new: true } // Return the updated user document
