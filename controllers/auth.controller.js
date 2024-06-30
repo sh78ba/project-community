@@ -98,10 +98,12 @@ exports.editProfileImage = async (req, res) => {
 
 
 
+
 exports.editProfileInterests = async (req, res) => {
     const transaction_mail = req.body.email;
     const get_interests = req.body.interests;
 
+    
     // Check if interests is an array of strings
     if (!Array.isArray(get_interests) || !get_interests.every(item => typeof item === 'string')) {
         return res.status(400).send({ message: "Interests should be an array of strings" });
@@ -119,10 +121,14 @@ exports.editProfileInterests = async (req, res) => {
             { $set: { interests: get_interests } }
         );
 
+        if (updatedUser.nModified === 0) {
+            return res.status(500).send({ message: "Error updating interests" });
+        }
+
         res.status(200).send({ message: "Interests updated successfully", user: updatedUser });
 
     } catch (err) {
-        console.log("Error while updating", err);
+        console.error("Error while updating:", err);
         res.status(500).send({ message: "Error while updating" });
     }
 };

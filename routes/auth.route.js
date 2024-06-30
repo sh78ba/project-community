@@ -19,6 +19,10 @@ module.exports=(app)=>{
     
     //get user
     app.get("/community/api/v1/getuser",authController.getUser)
+     
+    //edit interest
+    app.put("/community/api/v1/updateinterest",authController.editProfileInterests)
+   
 
 }
 
