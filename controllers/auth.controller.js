@@ -154,7 +154,7 @@ exports.updateProfile = async (req, res) => {
 };
 
 exports.getUser=async(req,res)=>{
-    const email=req.body.email;
+    const email=req.query.email;
     try {
         const user = await user_model.findOne({ email: email});
 
