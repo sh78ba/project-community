@@ -16,8 +16,9 @@ module.exports=(app)=>{
 
     //update profile
     app.post("/community/api/v1/updateprofile",authController.updateProfile)
-
-
+    
+    //get user
+    app.get("/community/api/v1/getuser",authController.getUser)
 
 }
 
