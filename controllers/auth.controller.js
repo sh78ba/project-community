@@ -83,9 +83,10 @@ exports.editProfileImage = async (req, res) => {
                 const updatedUser = await user_model.updateOne(
                     { email: transaction_mail },
                     { $set: { photourl: result.url } }
+                   
                 );
-    
-                res.status(200).send({message:"Photo updated sucessfully"});
+             
+                res.status(200).send({message:"Photo updated sucessfully"},updatedUser);
             });
     
 
@@ -94,6 +95,8 @@ exports.editProfileImage = async (req, res) => {
         res.status(500).send({ message: "Error while updating" });
     }
 };
+
+
 
 exports.editProfileInterests = async (req, res) => {
     const transaction_mail = req.body.email;
