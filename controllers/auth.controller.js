@@ -153,18 +153,23 @@ exports.updateProfile = async (req, res) => {
     }
 };
 
-exports.getUser=async(req,res)=>{
-    const email=req.query.email;
-    try {
-        const user = await user_model.findOne({ email: email});
 
-        if (user) {
-            return res.status(404).send(user);
+
+// getUser function in authController
+exports.getUser = async (req, res) => {
+    const email = req.query.email;
+    try {
+        const user = await user_model.findOne({ email: email });
+
+        if (!user) {
+            return res.status(404).send({ message: "User not found" });
         }
+
+        // If user found, send 200 status with user data
+        res.status(200).send(user);
 
     } catch (err) {
         console.log("Error getting user", err);
         res.status(500).send({ message: "Error getting user" });
     }
-
-}
+};
