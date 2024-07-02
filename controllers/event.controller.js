@@ -84,7 +84,7 @@ exports.registerEvent=async(req,res)=>{
 
 
 exports.getAllRegsiteredEvents=async(req,res)=>{
-    const getEmail=req.body.email;
+    const getEmail=req.query.email;
     try{
         const response=await register_event_model.find({email:getEmail});
         res.status(201).send(response)
