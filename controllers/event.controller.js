@@ -1,4 +1,5 @@
 const event_model=require("../models/event.model")
+const register_event_model=require("../models/registerevent.modal")
 const cloudinary=require("../utils/cloudinary")
 
 exports.creategroupEvent=async(req,res)=>{
@@ -56,3 +57,41 @@ exports.getAllGroupEvents=async(req,res)=>{
     }
 }
 
+
+exports.registerEvent=async(req,res)=>{
+    const req_body=req.body;
+    try{
+        const registerObj={
+            title:req_body.title,
+            location:req_body.location,
+            imageurl:req_body.imageurl,
+            date:req_body.date,
+            name:req_body.name,
+            email:req_body.email,
+            phone:req_body.phone
+        }
+        const event_created=await register_event_model.create(registerObj)
+
+            res.status(201).send({message:"Registered for event",event_created})
+    }
+    catch(err){
+        console.log("Error while registering the event",err)
+        res.status(500).send({
+            message:"Error while registering the event"
+        })
+    }
+}
+
+
+exports.getAllRegsiteredEvents=async(req,res)=>{
+    const getEmail=req.body.email;
+    try{
+        const response=await register_event_model.find({email:getEmail});
+        res.status(201).send(response)
+    }catch(err){
+        console.log("Error while fetching the events",err)
+        res.status(500).send({
+            message:"Error while fetching the events"
+        })
+}
+}
